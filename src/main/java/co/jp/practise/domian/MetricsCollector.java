@@ -5,6 +5,9 @@ import co.jp.practise.bo.RequestInfo;
 import co.jp.practise.domian.abs.MetricsStorage;
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * 负责提供API，来采集接口请求的原始数据
+ */
 public class MetricsCollector {
     /**
      * 基于接口实现

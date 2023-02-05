@@ -8,8 +8,18 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * 负责原始数据计算统计数据
+ */
 public class Aggregator {
 
+    /**
+     * 各种统计数据的计算
+     *
+     * @param requestInfos
+     * @param durationInMillis
+     * @return
+     */
     public static RequestStat aggregate(List<RequestInfo> requestInfos, long durationInMillis) {
         double maxRespTime = Double.MAX_VALUE;
         double minRespTime = Double.MIN_VALUE;
