@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit;
 @RestController
 public class UserController {
 
-    private Metrics metrics = new Metrics();
+    private final Metrics metrics = new Metrics();
 
     public UserController() {
         metrics.startRepeatedReport(60, TimeUnit.SECONDS);

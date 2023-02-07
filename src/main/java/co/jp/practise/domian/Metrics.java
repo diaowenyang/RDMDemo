@@ -16,11 +16,11 @@ public class Metrics {
     /**
      * Map的key是接口名称，value对应接口请求的响应时间或时间戳
      */
-    private Map<String, List<Double>> responseTimes = Maps.newHashMap();
+    private final Map<String, List<Double>> responseTimes = Maps.newHashMap();
 
-    private Map<String, List<Double>> timestamps = Maps.newHashMap();
+    private final Map<String, List<Double>> timestamps = Maps.newHashMap();
 
-    private ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+    private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 
     public void recordResponseTimes(String apiName, double responseTime) {
         responseTimes.putIfAbsent(apiName, new ArrayList<>());

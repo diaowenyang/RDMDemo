@@ -19,19 +19,23 @@ import java.util.TimerTask;
 public class EmailReporter {
     private static final Long DAY_HOURS_IN_SECONDS = 86400L;
 
-    private MetricsStorage metricsStorage;
-    private EmailSender emailSender;
-    private List<String> toAddresses = Lists.newArrayList();
+    private final MetricsStorage metricsStorage;
+    private final EmailSender emailSender;
+    private final List<String> toAddresses = Lists.newArrayList();
+
     public EmailReporter(MetricsStorage metricsStorage) {
         this(metricsStorage, new EmailSender(/*省略参数*/));
     }
+
     public EmailReporter(MetricsStorage metricsStorage, EmailSender emailSender) {
         this.metricsStorage = metricsStorage;
         this.emailSender = emailSender;
     }
+
     public void addToAddress(String address) {
         toAddresses.add(address);
     }
+
     public void startDailyReport() {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, 1);

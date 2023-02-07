@@ -12,7 +12,7 @@ public class MetricsCollector {
     /**
      * 基于接口实现
      */
-    private MetricsStorage metricsStorage;
+    private final MetricsStorage metricsStorage;
 
     /**
      * 依赖注入

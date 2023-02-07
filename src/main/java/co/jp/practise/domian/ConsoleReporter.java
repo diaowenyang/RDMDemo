@@ -16,19 +16,21 @@ import java.util.concurrent.TimeUnit;
  * 把结果输出到Console
  */
 public class ConsoleReporter {
-    private MetricsStorage metricsStorage;
-    private ScheduledExecutorService executor;
-    public ConsoleReporter(MetricsStorage metricsStorage){
+    private final MetricsStorage metricsStorage;
+    private final ScheduledExecutorService executor;
+
+    public ConsoleReporter(MetricsStorage metricsStorage) {
         this.metricsStorage = metricsStorage;
         this.executor = Executors.newSingleThreadScheduledExecutor();
     }
 
     /**
      * 定时触发第1，2，3 逻辑的执行
+     *
      * @param periodInSeconds
      * @param durationInSeconds
      */
-    public void startRepeatedReport(long periodInSeconds, long durationInSeconds){
+    public void startRepeatedReport(long periodInSeconds, long durationInSeconds) {
         executor.scheduleAtFixedRate(new Runnable() {
             @Override
             public void run() {
@@ -51,6 +53,6 @@ public class ConsoleReporter {
                 Gson gson = new Gson();
                 System.out.println(gson.toJson(stats));
             }
-        },0,periodInSeconds, TimeUnit.SECONDS);
+        }, 0, periodInSeconds, TimeUnit.SECONDS);
     }
 }
