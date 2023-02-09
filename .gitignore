@@ -7,6 +7,7 @@ tags
 *.orig
 
 # Created by .ignore support plugin (hsz.mobi)
+.idea
 .idea/*
 .gradle
 .gradle/*
