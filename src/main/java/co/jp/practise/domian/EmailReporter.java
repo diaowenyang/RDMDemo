@@ -53,7 +53,7 @@ public class EmailReporter {
                 long endTimeInMillis = System.currentTimeMillis();
                 long startTimeInMillis = endTimeInMillis - durationInMillis;
                 Map<String, List<RequestInfo>> requestInfos =
-                        metricsStorage.getRequestInfosByDuration(startTimeInMillis, endTimeInMillis);
+                        metricsStorage.getAllRequestInfosByDuration(startTimeInMillis, endTimeInMillis);
                 Map<String, RequestStat> stats = new HashMap<>();
                 for (Map.Entry<String, List<RequestInfo>> entry : requestInfos.entrySet()) {
                     String apiName = entry.getKey();

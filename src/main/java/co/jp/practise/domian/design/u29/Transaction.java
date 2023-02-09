@@ -3,13 +3,13 @@ package co.jp.practise.domian.design.u29;
 
 public class Transaction {
 
-    private String id;
     private final Long buyerId;
     private final Long sellerId;
     private final Long productId;
     private final String orderId;
     private final Long createTimestamp;
     private final Double amount;
+    private String id;
     private STATUS status;
     private String walletTransactionId;
     private WalletRpcService walletRpcService;
