@@ -36,7 +36,7 @@ public class IdGenerator {
                 count++;
             }
         }
-        // id生成的规则： 本机名的最后一个字段-当前时间戳-8位的随机字符串
+        // id生成的规则： 本机名的最后名称-当前时间戳-8位的随机字符串
         id = String.format("%s-%d-%s", hostName, System.currentTimeMillis(), new String(randomChars));
         return id;
     }
