@@ -10,6 +10,7 @@ public class ReporterFactory {
 
     /**
      * 定时根据给定的时间区间、从数据库中取出数据，借助Aggregator类完成统计工作，并把统计结果输出到命令行终端
+     *
      * @param storage
      * @return
      */
