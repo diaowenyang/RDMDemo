@@ -19,6 +19,7 @@ public class RandomIdGenerator implements LogTraceIdGenerator {
 
     /**
      * 本机名的最后一个名称
+     *
      * @return
      */
     private String getLastfieldOfHostName() {
@@ -36,6 +37,7 @@ public class RandomIdGenerator implements LogTraceIdGenerator {
 
     /**
      * 指定长度的 数字大小写字符字符串
+     *
      * @param length
      * @return
      */
