@@ -15,6 +15,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.UnknownHostException;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @SpringBootTest
 class BusinessApplicationTests {
@@ -33,7 +35,7 @@ class BusinessApplicationTests {
 
     // /Users/wen/Pictures/g_dirFile_copy_1_1.txt
     public static void main(String[] args) throws Exception {
-        File file = new File("/Users/wen/Pictures/G_pan/NOT_IT.txt");
+        File file = new File("/Users/wen/Pictures/文档/after_JP_LANGUAGE.txt");
         String content;
         if (!file.exists()) {
             return;
@@ -41,23 +43,21 @@ class BusinessApplicationTests {
         FileInputStream fileInputStream = new FileInputStream(file);
         InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-        File newFile = new File("/Users/wen/Pictures/G_pan/after_NOT_IT.txt");
+        File newFile = new File("/Users/wen/Pictures/文档/new_after_JP_LANGUAGE.txt");
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(newFile), "UTF-8"));
         Set<String> existSet = Sets.newHashSet();
         // Queue<String> fifo = EvictingQueue.create(20);
         while (StringUtils.isNotBlank(content = bufferedReader.readLine())) {
-            if (content.endsWith("downloading")) {
+            // 如果后缀有 downloading 也不输出
+            if (content.trim().endsWith("downloading")) {
+                continue;
+            }
+            // 如果不包含中文，也不输出
+            if (!isContainChinese(content)) {
                 continue;
             }
             String[] strIng = content.trim().split("\\.");
-            if (strIng.length >= 2
-//                    && (strIng[strIng.length - 1].equals("html")
-//                    || strIng[strIng.length - 1].equals("pdf")
-//                    || strIng[strIng.length - 1].equals("m4a")
-//                    || strIng[strIng.length - 1].equals("mp3")
-//                    || strIng[strIng.length - 1].equals("mp4"))
-            ) {
-                //int i = content.lastIndexOf(".");
+            if (strIng.length >= 2) {
                 // 去掉文件后缀名的部分
                 String filePartName = content.substring(0, content.lastIndexOf("."));
                 if (existSet.contains(filePartName)) {
@@ -75,5 +75,14 @@ class BusinessApplicationTests {
         inputStreamReader.close();
         fileInputStream.close();
         bufferedWriter.close();
+    }
+
+    private static boolean isContainChinese(String str) {
+        if (StringUtils.isEmpty(str)) {
+            return false;
+        }
+        Pattern p = Pattern.compile("[\u4E00-\u9FA5|\\！|\\，|\\。|\\（|\\）|\\《|\\》|\\“|\\”|\\？|\\：|\\；|\\【|\\】]");
+        Matcher m = p.matcher(str);
+        return m.find();
     }
 }
