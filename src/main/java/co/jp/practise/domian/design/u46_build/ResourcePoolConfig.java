@@ -9,16 +9,27 @@ import org.springframework.util.Assert;
  */
 public class ResourcePoolConfig {
 
-    private String name;
-    private int maxTotal;
-    private int maxIdle;
-    private int minIdle;
+    private final String name;
+    private final int maxTotal;
+    private final int maxIdle;
+    private final int minIdle;
 
     ResourcePoolConfig(Builder builder) {
         this.name = builder.name;
         this.maxIdle = builder.maxIdle;
         this.maxTotal = builder.maxTotal;
         this.minIdle = builder.minIdle;
+    }
+
+    public static void main(String[] args) {
+        ResourcePoolConfig config = new ResourcePoolConfig.Builder()
+                .name("dbconnectionpool")
+                .maxTotal(16)
+                .maxIdle(10)
+                .minIdle(8)
+                .build();
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(config));
     }
 
     public static class Builder {
@@ -60,17 +71,5 @@ public class ResourcePoolConfig {
             this.minIdle = minIdle;
             return this;
         }
-    }
-
-
-    public static void main(String[] args) {
-        ResourcePoolConfig config = new ResourcePoolConfig.Builder()
-                .name("dbconnectionpool")
-                .maxTotal(16)
-                .maxIdle(10)
-                .minIdle(8)
-                .build();
-        Gson gson = new Gson();
-        System.out.println(gson.toJson(config));
     }
 }

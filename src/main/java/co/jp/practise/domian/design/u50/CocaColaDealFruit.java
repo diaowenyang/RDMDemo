@@ -17,11 +17,11 @@ public class CocaColaDealFruit extends DealFruit {
         clearUpRubbish();
     }
 
-    public void washFruilt(){
+    public void washFruilt() {
         System.out.println("洗水果");
     }
 
-    public void clearUpRubbish(){
+    public void clearUpRubbish() {
         System.out.println("吃完要清理垃圾");
     }
 }

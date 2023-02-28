@@ -6,14 +6,14 @@ import java.util.ArrayList;
  * 具体主题类
  */
 public class WeatherData implements Subject {
+    // 观察者集合
+    private final ArrayList<Observer> observers;
     // 温度
     private float temperature;
     // 气压
     private float pressure;
     // 湿度
     private float humidity;
-    // 观察者集合
-    private ArrayList<Observer> observers;
 
     public WeatherData() {
         observers = new ArrayList<>();
